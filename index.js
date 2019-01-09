@@ -1,7 +1,7 @@
 'use strict';
 var dotenv = require('dotenv');
 dotenv.load();
-let datos;
+let datos = {};
 const express = require('express');
 const app = express();
 const uuidv1 = require('uuid/v1');

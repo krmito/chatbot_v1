@@ -11,9 +11,9 @@ const AI_SESSION_ID = uuidv1();
 
 const dialogflow = require('apiai');
 const ai = dialogflow(ACCESS_TOKEN);
-
+/* 
 const servicioAfiliadoEPS = require('services/consultaAfiliadoEPS.js');
-const utilities = require('/public/js/app.js');
+const utilities = require('/public/js/app.js'); */
 
 
 app.use(express.static(__dirname + '/views')); // HTML Pages
@@ -63,9 +63,9 @@ socketio.on('connection', function (socket) {
       llamar el servicio para confirmar afiliación.*/
       if (intentId == '63fd29c5-2fa4-46d7-9d09-35f28b7f229a') {
 
-        consultarServicio("CC", '1144030482');
-        console.log("RESPONSE REQUEST: " , JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado);
-        
+        /* consultarServicio("CC", '1144030482');
+        console.log("RESPONSE REQUEST: ", JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado);
+ */
       }
     });
 
@@ -79,9 +79,9 @@ socketio.on('connection', function (socket) {
 });
 
 
-function consultarServicio(tipo, cedula) {
+/* function consultarServicio(tipo, cedula) {
   servicioAfiliadoEPS.servicioAfiliadoEPS.armaObjetos(tipo, cedula, (x) => {
     console.log('RESPONSE: ', x);
     datos = x;
   });
-}
+} */

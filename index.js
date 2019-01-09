@@ -48,7 +48,7 @@ socketio.on('connection', function(socket) {
     });
 
     aiReq.on('response', (response) => {
-      console.log("TODO: "+ response);
+      console.log("TODO: "+ JSON.stringify(response));
       
       let aiResponse = response.result.fulfillment.speech;
       console.log('AI Response: ' + aiResponse);

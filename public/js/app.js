@@ -46,7 +46,9 @@ function replyMain(e){
     	html.innerHTML = html.innerHTML + htmlResponse;
     	socket.emit('chat request', query.value);
     	query.value = '';
-    	console.log(query.value);
+		//console.log(query.value);
+		console.log('VER INFORMACION DE ENTRADA ? ');
+		
     	}
 };
 

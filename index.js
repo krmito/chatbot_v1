@@ -12,16 +12,19 @@ const AI_SESSION_ID = uuidv1();
 const dialogflow = require('apiai');
 const ai = dialogflow(ACCESS_TOKEN);
 
+const servicioAfiliadoEPS = require('services/consultaAfiliadoEPS.ts');
+const utilities = require('public/js/utilities.js');
+
 
 app.use(express.static(__dirname + '/views')); // HTML Pages
 app.use(express.static(__dirname + '/public')); // CSS, JS & Images
 
-const server = app.listen(process.env.PORT || 9780, function(){
-	console.log('listening on  port %d', server.address().port);
+const server = app.listen(process.env.PORT || 9780, function () {
+  console.log('listening on  port %d', server.address().port);
 });
 
 const socketio = require('socket.io')(server);
-socketio.on('connection', function(socket){
+socketio.on('connection', function (socket) {
   console.log('a user connected');
 });
 
@@ -37,7 +40,7 @@ app.get('/corre', (req, res) => {
 });
 
 
-socketio.on('connection', function(socket) {
+socketio.on('connection', function (socket) {
   socket.on('chat request', (text) => {
     console.log('Message: ' + text);
 
@@ -48,11 +51,22 @@ socketio.on('connection', function(socket) {
     });
 
     aiReq.on('response', (response) => {
-      console.log("TODO: "+ JSON.stringify(response));
-      
+      console.log("TODO: " + JSON.stringify(response));
+
       let aiResponse = response.result.fulfillment.speech;
+      let intentId = response.result.metadata.intentId;
       console.log('AI Response: ' + aiResponse);
       socket.emit('ai response', aiResponse);
+      socket.emit('Intent ID: ', intentId);
+
+      /*Si el intent de DialogFlow es el de ingresar documento,
+      llamar el servicio para confirmar afiliación.*/
+      if (intentId == '63fd29c5-2fa4-46d7-9d09-35f28b7f229a') {
+
+        consultarServicio("CC", '1144030482');
+        console.log("RESPONSE REQUEST: " , JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado);
+        
+      }
     });
 
     aiReq.on('error', (error) => {
@@ -63,3 +77,11 @@ socketio.on('connection', function(socket) {
 
   });
 });
+
+
+function consultarServicio(tipo, cedula) {
+  servicioAfiliadoEPS.servicioAfiliadoEPS.armaObjetos(tipo, cedula, (x) => {
+    console.log('RESPONSE: ', x);
+    datos = x;
+  });
+}

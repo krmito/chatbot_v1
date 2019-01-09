@@ -19,6 +19,7 @@ var utilities = /** @class */ (function () {
             return value;
         }
     };
+    
     utilities.diaSemana = function (dia, mes, anio) {
         var dias = ["dom", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabado"];
         var dt = new Date(mes + ' ' + dia + ', ' + anio + ' 12:00:00');

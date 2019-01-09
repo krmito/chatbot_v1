@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var servicioAfiliadoEPS = /** @class */ (function () {
+    function servicioAfiliadoEPS() {
+    }
     servicioAfiliadoEPS.armaObjetos = function (tipo, cedula, callback) {
         console.log("Tipo: ", tipo, " cédula: ", cedula);
         this.cuerpo = {

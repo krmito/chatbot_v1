@@ -61,9 +61,9 @@ socketio.on('connection', function (socket) {
 
       /*Si el intent de DialogFlow es el de ingresar documento,
       llamar el servicio para confirmar afiliación.*/
-      if (intentId == '63fd29c5-2fa4-46d7-9d09-35f28b7f229a') {
+      if (intentId == '26cf2070-fed7-4bff-b1db-6ba04b5d8f25') {
 
-        consultarServicio("CC", '1144030482');
+        consultarServicio("CC", text);
         console.log("RESPONSE REQUEST: ", JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado);
 
       }

@@ -60,7 +60,6 @@ socketio.on('connection', function (socket) {
 
         let promise = new Promise((resolve, reject) => {
 
-          let dataReceivedSuccessfully = false;
           if (consultarServicio("CC", text)) {
             resolve(consultarServicio("CC", text));
           }
@@ -104,6 +103,6 @@ socketio.on('connection', function (socket) {
 function consultarServicio(tipo, cedula) {
   servicioAfiliadoEPS.servicioAfiliadoEPS.armaObjetos(tipo, cedula, (x) => {
     console.log('RESPONSE: ', x);
-    return x;
   });
+  return x;
 }

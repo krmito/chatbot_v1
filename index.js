@@ -62,7 +62,7 @@ socketio.on('connection', function (socket) {
 
           let dataReceivedSuccessfully = false;
           if (consultarServicio("CC", text)) {
-            resolve(datos);
+            resolve(consultarServicio("CC", text));
           }
           if (!consultarServicio("CC", text)) {
             reject('Data Corrupted!');
@@ -104,6 +104,6 @@ socketio.on('connection', function (socket) {
 function consultarServicio(tipo, cedula) {
   servicioAfiliadoEPS.servicioAfiliadoEPS.armaObjetos(tipo, cedula, (x) => {
     console.log('RESPONSE: ', x);
-    datos = x;
+    return x;
   });
 }

@@ -57,9 +57,9 @@ socketio.on('connection', function (socket) {
       /*Si el intent de DialogFlow es el de ingresar documento,
       llamar el servicio para confirmar afiliación.*/
       consultarServicio("CC", text);
-      
+
       if (intentId == '26cf2070-fed7-4bff-b1db-6ba04b5d8f25') {
-        
+
         let promise = new Promise((resolve, reject) => {
           setTimeout(() => {
             console.log('DATOS', consultarServicio("CC", text));
@@ -73,8 +73,8 @@ socketio.on('connection', function (socket) {
 
           console.log('res', res);
 
-          if (JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado != undefined) {
-            let afiliado = JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado;
+          if (JSON.parse(res).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado != undefined) {
+            let afiliado = JSON.parse(res).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado;
             let calidadAfiliado = afiliado.calidadAfiliado;
             let fechaAfiliacion = afiliado.fechaAfiliacionSistema;
             let tipoAfiliado = afiliado.tipoAfiliado;

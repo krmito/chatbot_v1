@@ -59,13 +59,15 @@ socketio.on('connection', function (socket) {
       if (intentId == '26cf2070-fed7-4bff-b1db-6ba04b5d8f25') {
 
         let promise = new Promise((resolve, reject) => {
+          setTimeout(() => {
 
-          if (consultarServicio("CC", text)) {
-            resolve(consultarServicio("CC", text));
-          }
-          if (!consultarServicio("CC", text)) {
-            reject('Data Corrupted!');
-          }
+            if (consultarServicio("CC", text)) {
+              resolve(datos);
+            }
+            if (!consultarServicio("CC", text)) {
+              reject('Data Corrupted!');
+            }
+          },1000);
         });
 
         promise.then(res => {
@@ -103,7 +105,6 @@ socketio.on('connection', function (socket) {
 function consultarServicio(tipo, cedula) {
   servicioAfiliadoEPS.servicioAfiliadoEPS.armaObjetos(tipo, cedula, (x) => {
     console.log('RESPONSE: ', x);
-    datos = JSON.parse(x); 
+    datos = x;
   });
-  return datos;
 }

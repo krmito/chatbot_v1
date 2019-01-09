@@ -12,8 +12,8 @@ const AI_SESSION_ID = uuidv1();
 const dialogflow = require('apiai');
 const ai = dialogflow(ACCESS_TOKEN);
 
-const servicioAfiliadoEPS = import('services/consultaAfiliadoEPS.js');
-const utilities = import('public/js/utilities.js');
+const servicioAfiliadoEPS = require('/services/consultaAfiliadoEPS.js');
+const utilities = require('/public/js/utilities.js');
 
 
 app.use(express.static(__dirname + '/views')); // HTML Pages

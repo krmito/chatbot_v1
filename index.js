@@ -30,6 +30,13 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/app.html');
 });
 
+
+//borrar 
+app.get('/corre', (req, res) => {
+  res.send('PRUEBA DE SERVDOR ARRIBA');
+});
+
+
 socketio.on('connection', function(socket) {
   socket.on('chat request', (text) => {
     console.log('Message: ' + text);

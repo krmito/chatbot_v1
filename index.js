@@ -62,12 +62,9 @@ socketio.on('connection', function (socket) {
           setTimeout(() => {
 
             console.log('DATOS', datos);
-            if (datos) {
-              resolve(datos);
-            }
-            if (!consultarServicio("CC", text)) {
-              reject('Data Corrupted!');
-            }
+
+            resolve(datos);
+
           }, 1000);
         });
 

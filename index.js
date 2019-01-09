@@ -13,7 +13,7 @@ const dialogflow = require('apiai');
 const ai = dialogflow(ACCESS_TOKEN);
 
 const servicioAfiliadoEPS = require('/services/consultaAfiliadoEPS.js');
-const utilities = require('/public/js/utilities.js');
+//const utilities = require('/public/js/utilities.js');
 
 
 app.use(express.static(__dirname + '/views')); // HTML Pages

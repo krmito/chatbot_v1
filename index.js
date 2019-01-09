@@ -74,8 +74,8 @@ socketio.on('connection', function (socket) {
           let tipoAfiliado = afiliado.tipoAfiliado;
           let correos = afiliado.email;
           console.log("Calidad afiliado: " + calidadAfiliado + " \n Fecha afiliación: " + fechaAfiliacion);
-          
           socket.emit('calidadAfiliado: ', calidadAfiliado);
+          
         } else {
 
         }

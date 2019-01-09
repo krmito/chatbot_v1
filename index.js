@@ -55,7 +55,7 @@ socketio.on('connection', function (socket) {
 
       let aiResponse = response.result.fulfillment.speech;
       let intentId = response.result.metadata.intentId;
-      console.log('AI Response: ' + aiResponse, ''datos);
+      console.log('AI Response: ' + aiResponse);
       socket.emit('ai response', aiResponse);
       console.log('Intent ID: ', intentId);
       socket.emit('Intent ID: ', intentId);

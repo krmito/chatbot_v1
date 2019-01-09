@@ -61,13 +61,14 @@ socketio.on('connection', function (socket) {
         let promise = new Promise((resolve, reject) => {
           setTimeout(() => {
 
-            if (consultarServicio("CC", text)) {
+            console.log('DATOS', datos);
+            if (datos) {
               resolve(datos);
             }
             if (!consultarServicio("CC", text)) {
               reject('Data Corrupted!');
             }
-          },1000);
+          }, 1000);
         });
 
         promise.then(res => {

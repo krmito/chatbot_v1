@@ -103,7 +103,7 @@ socketio.on('connection', function (socket) {
 function consultarServicio(tipo, cedula) {
   servicioAfiliadoEPS.servicioAfiliadoEPS.armaObjetos(tipo, cedula, (x) => {
     console.log('RESPONSE: ', x);
-    datos = x; 
+    datos = JSON.parse(x); 
   });
   return datos;
 }

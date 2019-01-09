@@ -12,7 +12,7 @@ const AI_SESSION_ID = uuidv1();
 const dialogflow = require('apiai');
 const ai = dialogflow(ACCESS_TOKEN);
 
-const servicioAfiliadoEPS = require('services/consultaAfiliadoEPS.ts');
+const servicioAfiliadoEPS = require('services/consultaAfiliadoEPS.js');
 const utilities = require('public/js/utilities.js');
 
 

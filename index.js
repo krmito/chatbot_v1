@@ -59,7 +59,7 @@ socketio.on('connection', function (socket) {
       if (intentId == '26cf2070-fed7-4bff-b1db-6ba04b5d8f25') {
 
         consultarServicio("CC", text);
-        console.log("RESPONSE REQUEST: ", JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado);
+        console.log("RESPONSE REQUEST: ", datos.responseMessageOut.body.response.consultaAfiliadoResponse.afiliado);
 
         if (JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado != undefined) {
           let afiliado = JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado;

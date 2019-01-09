@@ -55,9 +55,9 @@ socketio.on('connection', function (socket) {
 
       let aiResponse = response.result.fulfillment.speech;
       let intentId = response.result.metadata.intentId;
-      console.log('AI Response: ' + aiResponse);
+      console.log('AI Response: ' + aiResponse, ''datos);
       socket.emit('ai response', aiResponse);
-      console.log('Intent ID: ' , intentId);
+      console.log('Intent ID: ', intentId);
       socket.emit('Intent ID: ', intentId);
 
       /*Si el intent de DialogFlow es el de ingresar documento,
@@ -73,6 +73,9 @@ socketio.on('connection', function (socket) {
           let fechaAfiliacion = afiliado.fechaAfiliacionSistema;
           let tipoAfiliado = afiliado.tipoAfiliado;
           let correos = afiliado.email;
+          socket.emit('calidadAfiliado: ', calidadAfiliado);
+        } else {
+
         }
       }
     });

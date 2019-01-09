@@ -34,12 +34,6 @@ app.get('/', (req, res) => {
 });
 
 
-//borrar 
-app.get('/corre', (req, res) => {
-  res.send('PRUEBA DE SERVDOR ARRIBA');
-});
-
-
 socketio.on('connection', function (socket) {
   socket.on('chat request', (text) => {
     console.log('Message: ' + text);
@@ -55,10 +49,10 @@ socketio.on('connection', function (socket) {
 
       let aiResponse = response.result.fulfillment.speech;
       let intentId = response.result.metadata.intentId;
-      console.log('AI Response: ' + aiResponse);
-      socket.emit('ai response', aiResponse);
+     /*  console.log('AI Response: ' + aiResponse);
+      
       console.log('Intent ID: ', intentId);
-      socket.emit('Intent ID: ', intentId);
+      socket.emit('Intent ID: ', intentId); */
 
       /*Si el intent de DialogFlow es el de ingresar documento,
       llamar el servicio para confirmar afiliación.*/
@@ -75,9 +69,9 @@ socketio.on('connection', function (socket) {
           let correos = afiliado.email;
           console.log("Calidad afiliado: " + calidadAfiliado + " \n Fecha afiliación: " + fechaAfiliacion);
           socket.emit('calidadAfiliado: ', calidadAfiliado);
-          
-        } else {
 
+        } else {
+          socket.emit('ai response', aiResponse);
         }
       }
     });

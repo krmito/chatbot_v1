@@ -16,7 +16,7 @@ const ai = dialogflow(ACCESS_TOKEN);
 app.use(express.static(__dirname + '/views')); // HTML Pages
 app.use(express.static(__dirname + '/public')); // CSS, JS & Images
 
-const server = app.listen(3000, function(){
+const server = app.listen(process.env.PORT || 9780, function(){
 	console.log('listening on  port %d', server.address().port);
 });
 

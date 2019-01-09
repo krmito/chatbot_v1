@@ -2,10 +2,10 @@
   "name": "helpdesk",
   "version": "1.0.0",
   "description": "NodeJS Application for IT help desk",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node index.js"
   },
   "author": "Pavan",
   "license": "ISC",

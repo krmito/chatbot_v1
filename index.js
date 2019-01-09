@@ -73,9 +73,6 @@ socketio.on('connection', function (socket) {
 
         promise.then(res => {
 
-          console.log('DAATOS--------->', res);
-
-          console.log("RESPONSE REQUEST: ", JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado);
 
           if (JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado != undefined) {
             let afiliado = JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado;

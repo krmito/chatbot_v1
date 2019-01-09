@@ -61,7 +61,7 @@ socketio.on('connection', function (socket) {
         let promise = new Promise((resolve, reject) => {
           setTimeout(() => {
             consultarServicio("CC", text)
-            console.log('DATOS', datos);
+            console.log('DATOS', consultarServicio("CC", text));
 
             resolve(datos);
 
@@ -103,4 +103,5 @@ function consultarServicio(tipo, cedula) {
     console.log('RESPONSE: ', x);
     datos = x;
   });
+  return datos;
 }

@@ -1,9 +1,9 @@
 'use strict';
 
-$(function(){
+/*$(function(){
 
 });
-
+*/
 const socket = io();
 const query = document.querySelector('#comment');
 const html = document.querySelector('#conversation');

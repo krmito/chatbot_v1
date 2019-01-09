@@ -58,21 +58,34 @@ socketio.on('connection', function (socket) {
       llamar el servicio para confirmar afiliación.*/
       if (intentId == '26cf2070-fed7-4bff-b1db-6ba04b5d8f25') {
 
-        consultarServicio("CC", text);
-        console.log('DAATOS--------->', datos);
-        
-        console.log("RESPONSE REQUEST: ", JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado);
+        let promise = new Promise((resolve, reject) => {
 
-        if (JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado != undefined) {
-          let afiliado = JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado;
-          let calidadAfiliado = afiliado.calidadAfiliado;
-          let fechaAfiliacion = afiliado.fechaAfiliacionSistema;
-          let tipoAfiliado = afiliado.tipoAfiliado;
-          let correos = afiliado.email;
-          console.log("Calidad afiliado: " + calidadAfiliado + " \n Fecha afiliación: " + fechaAfiliacion);
-          socket.emit('calidadAfiliado: ', calidadAfiliado);
+          let dataReceivedSuccessfully = false;
+          if (consultarServicio("CC", text)) {
+            resolve(datos);
+          }
+          if (!consultarServicio("CC", text)) {
+            reject('Data Corrupted!');
+          }
+        });
 
-        }
+        promise.then(res => {
+
+          console.log('DAATOS--------->', JSON.parse(res));
+
+          console.log("RESPONSE REQUEST: ", JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado);
+
+          if (JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado != undefined) {
+            let afiliado = JSON.parse(datos).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado;
+            let calidadAfiliado = afiliado.calidadAfiliado;
+            let fechaAfiliacion = afiliado.fechaAfiliacionSistema;
+            let tipoAfiliado = afiliado.tipoAfiliado;
+            let correos = afiliado.email;
+            console.log("Calidad afiliado: " + calidadAfiliado + " \n Fecha afiliación: " + fechaAfiliacion);
+            socket.emit('calidadAfiliado: ', calidadAfiliado);
+
+          }
+        });
       } else {
         socket.emit('ai response', aiResponse);
       }

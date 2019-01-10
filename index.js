@@ -57,7 +57,7 @@ socketio.on('connection', function (socket) {
       /*Si el intent de DialogFlow es el de ingresar documento,
       llamar el servicio para confirmar afiliación.*/
       consultarServicio("CC", text);
-
+      availableDates();
       if (intentId == '26cf2070-fed7-4bff-b1db-6ba04b5d8f25') {
 
         let promise = new Promise((resolve, reject) => {
@@ -77,7 +77,7 @@ socketio.on('connection', function (socket) {
           arregloDias.forEach((element, index) => {
             console.log('heyy', index, element);
             index = index + 1;
-            availableDate += '*' + index + '.' + element.text + '*' + "\n";
+            availableDate += '*' + index + '.' + element.text + '*';
           });
 
 
@@ -113,4 +113,34 @@ function consultarServicio(tipo, cedula) {
     datos = x;
   });
   return datos;
+}
+
+
+function availableDates() {
+  switch (mes) {
+    case 0: { mesString = 'January' } break;
+    case 1: { mesString = 'February' } break;
+    case 2: { mesString = 'March' } break;
+    case 3: { mesString = 'April' } break;
+    case 4: { mesString = 'May' } break;
+    case 5: { mesString = 'June' } break;
+    case 6: { mesString = 'July' } break;
+    case 7: { mesString = 'August' } break;
+    case 8: { mesString = 'September' } break;
+    case 9: { mesString = 'October' } break;
+    case 10: { mesString = 'November' } break;
+    case 11: { mesString = 'December' } break;
+  }
+
+  let diasDisponibles = fechaActual.getDay();
+  let contador = 0;
+  /// ESTO ES EN CASO DE QUE EL HORARIO DE ATENFCIÓN SEA DE LUNES A VIERNES, EN CAOS DE QUE SE VA ATENDER FINES DE SEMANA HAY QUE HACER ALGO ADICIONAL
+  for (let i = diasDisponibles; i <= 5; i++) {
+    if (i == diasDisponibles) {
+      arregloDias.push({ "text": 'Hoy ' + utilities.diaSemana(dia, mesString, anio) + ' ' + dia + '/' + (fechaActual.getMonth() + 1) + '/' + anio });
+    } else if (i > diasDisponibles) {
+      arregloDias.push({ "text": utilities.diaSemana(dia + contador, mesString, anio) + ' ' + (dia + contador) + '/' + (fechaActual.getMonth() + 1) + '/' + anio });
+    }
+    contador++;
+  }
 }

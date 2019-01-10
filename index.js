@@ -80,7 +80,8 @@ socketio.on('connection', function (socket) {
             let tipoAfiliado = afiliado.tipoAfiliado;
             let correos = afiliado.email;
             console.log("Calidad afiliado: " + calidadAfiliado + " \n Fecha afiliación: " + fechaAfiliacion);
-            socket.emit('ai response', "Tu calidad es de: " , calidadAfiliado, "\n estás afiliado desde: ", fechaAfiliacion, "\n tu tipo de afiliación es: ", tipoAfiliado);
+            let mensaje = "Tu calidad es de: " + calidadAfiliado + "\n estás afiliado desde: " + fechaAfiliacion + "\n tu tipo de afiliación es: " + tipoAfiliado + "\n tu correo es: " + correos;
+            socket.emit('ai response', mensaje);
           }
         });
       } else {

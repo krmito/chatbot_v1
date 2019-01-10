@@ -62,8 +62,8 @@ socketio.on('connection', function (socket) {
 
         let promise = new Promise((resolve, reject) => {
           setTimeout(() => {
-            console.log('DATOS', consultarServicio("CC", text));
-
+           /*  console.log('DATOS', consultarServicio("CC", text));
+ */
             resolve(datos);
 
           }, 1000);
@@ -81,7 +81,9 @@ socketio.on('connection', function (socket) {
             let correos = afiliado.email;
             console.log("Calidad afiliado: " + calidadAfiliado + " \n Fecha afiliación: " + fechaAfiliacion);
             socket.emit('ai response', calidadAfiliado);
-
+            socket.emit('ai response', fechaAfiliacion);
+            socket.emit('ai response', tipoAfiliado);
+            socket.emit('ai response', correos);
           }
         });
       } else {

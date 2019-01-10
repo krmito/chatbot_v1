@@ -83,7 +83,7 @@ socketio.on('connection', function (socket) {
           arregloDias.forEach((element, index) => {
             console.log('heyy', index, element);
             index = index + 1;
-            availableDate += '*' + index + '.' + element.text + '*';
+            availableDate +=  index + '.' + element.text;
           });
 
 

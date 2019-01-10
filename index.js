@@ -80,10 +80,8 @@ socketio.on('connection', function (socket) {
             let tipoAfiliado = afiliado.tipoAfiliado;
             let correos = afiliado.email;
             console.log("Calidad afiliado: " + calidadAfiliado + " \n Fecha afiliación: " + fechaAfiliacion);
-            socket.emit('ai response', calidadAfiliado);
-            socket.emit('ai response', fechaAfiliacion);
-            socket.emit('ai response', tipoAfiliado);
-            socket.emit('ai response', correos);
+            let object = {correo: correos, fechaAfiliacion: fechaAfiliacion, calidadAfiliado: calidadAfiliado, tipoAfiliado: tipoAfiliado};
+            socket.emit('ai response', object);
           }
         });
       } else {

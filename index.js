@@ -15,6 +15,7 @@ const ai = dialogflow(ACCESS_TOKEN);
 const servicioAfiliadoEPS = require('./services/consultaAfiliadoEPS');
 const utilities = require('./public/js/utilities');
 var arregloDias = [];
+var fechaActual = new Date();
 var dia = fechaActual.getDate();
 var mes = fechaActual.getMonth();
 var anio = fechaActual.getFullYear();

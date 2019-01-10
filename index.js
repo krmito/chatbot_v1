@@ -69,11 +69,8 @@ socketio.on('connection', function (socket) {
         availableDates();
         let promise = new Promise((resolve, reject) => {
           setTimeout(() => {
-            /*  console.log('DATOS', consultarServicio("CC", text));
-  */
             resolve(datos);
-
-          }, 1000);
+          }, 2000);
         });
 
         promise.then((res) => {

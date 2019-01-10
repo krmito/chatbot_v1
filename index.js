@@ -14,7 +14,7 @@ const ai = dialogflow(ACCESS_TOKEN);
 
 const servicioAfiliadoEPS = require('./services/consultaAfiliadoEPS');
 const utilities = require('./public/js/utilities');
-
+var arregloDias = [];
 
 app.use(express.static(__dirname + '/views')); // HTML Pages
 app.use(express.static(__dirname + '/public')); // CSS, JS & Images
@@ -62,8 +62,8 @@ socketio.on('connection', function (socket) {
 
         let promise = new Promise((resolve, reject) => {
           setTimeout(() => {
-           /*  console.log('DATOS', consultarServicio("CC", text));
- */
+            /*  console.log('DATOS', consultarServicio("CC", text));
+  */
             resolve(datos);
 
           }, 1000);
@@ -72,6 +72,14 @@ socketio.on('connection', function (socket) {
         promise.then((res) => {
 
           console.log('res', res);
+          var availableDate = '';
+
+          arregloDias.forEach((element, index) => {
+            console.log('heyy', index, element);
+            index = index + 1;
+            availableDate += '*' + index + '.' + element.text + '*' + "\n";
+          });
+
 
           if (JSON.parse(res).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado != undefined) {
             let afiliado = JSON.parse(res).responseMessageOut.body.response.consultaAfiliadoResponse.afiliado;
@@ -80,7 +88,7 @@ socketio.on('connection', function (socket) {
             let tipoAfiliado = afiliado.tipoAfiliado;
             let correos = afiliado.email;
             console.log("Calidad afiliado: " + calidadAfiliado + "  Fecha afiliación: " + fechaAfiliacion);
-            let mensaje = "Tu calidad es de: " + calidadAfiliado + ", estás afiliado desde: " + fechaAfiliacion + " y tu tipo de afiliación es: " + tipoAfiliado;
+            let mensaje = "Tu calidad es de: " + calidadAfiliado + ", estás afiliado desde: " + fechaAfiliacion + " y tu tipo de afiliación es: " + tipoAfiliado + " y los días disponibles para citas son: " + availableDate;
             socket.emit('ai response', mensaje);
           }
         });

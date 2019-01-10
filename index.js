@@ -62,9 +62,10 @@ socketio.on('connection', function (socket) {
 
       /*Si el intent de DialogFlow es el de ingresar documento,
       llamar el servicio para confirmar afiliación.*/
-      consultarServicio("CC", text);
+      
       
       if (intentId == '26cf2070-fed7-4bff-b1db-6ba04b5d8f25') {
+        consultarServicio("CC", text);
         availableDates();
         let promise = new Promise((resolve, reject) => {
           setTimeout(() => {
